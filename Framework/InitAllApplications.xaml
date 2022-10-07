@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>763,2468</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>784,2592</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="35">
@@ -83,18 +83,10 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="594,2403" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="594,2527" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="Qname">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">firstcase-queue</Literal>
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:String" Name="Q2name">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">secondcase-queue</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="firstcase-queue" Name="Qname" />
+      <Variable x:TypeArguments="x:String" Default="secondcase-queue" Name="Q2name" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -188,7 +180,7 @@
         </ui:Target>
       </ui:Click.Target>
     </ui:Click>
-    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="552,1254" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="552,1378" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
       </Sequence.Variables>
@@ -197,13 +189,13 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'ACMESyste Page'" sap:VirtualizedContainerService.HintSize="510,1162" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="4c2262dd34cb67f9e49beab47995d3c7" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;">
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'ACMESyste Page'" sap:VirtualizedContainerService.HintSize="510,1286" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="4c2262dd34cb67f9e49beab47995d3c7" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;">
         <ui:BrowserScope.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1016" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1140" sap2010:WorkflowViewState.IdRef="Sequence_11">
               <Sequence.Variables>
                 <Variable x:TypeArguments="sd:DataTable" Name="thirdcasedata" />
               </Sequence.Variables>
@@ -228,6 +220,7 @@
                   </InArgument>
                 </ui:WriteRange.StartingCell>
               </ui:WriteRange>
+              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,84" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;data has been written in the sheet&quot;]" />
               <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,228" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                 <ui:ForEachRow.Body>
                   <ActivityAction x:TypeArguments="sd:DataRow">
@@ -242,21 +235,11 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[Qname]">
                         <ui:AddQueueItem.ItemInformation>
-                          <InArgument x:TypeArguments="x:String" x:Key="WIID">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;WIID&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Description">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Description&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Type">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Type&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Status">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Status&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Date">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Date&quot;).ToString" />
-                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="WIID">[CurrentRow("WIID").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Description">[CurrentRow("Description").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Type">[CurrentRow("Type").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Status">[CurrentRow("Status").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Date">[CurrentRow("Date").ToString]</InArgument>
                         </ui:AddQueueItem.ItemInformation>
                       </ui:AddQueueItem>
                     </Sequence>
@@ -284,24 +267,12 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="[Q2name]">
                         <ui:AddQueueItem.ItemInformation>
-                          <InArgument x:TypeArguments="x:String" x:Key="Country">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Country&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Total Cases">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Total Cases&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="New Cases">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;New Cases&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Total Recovered">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Total Recovered&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="New Recovered">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;New Recovered&quot;).ToString" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="Population">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Population&quot;).ToString" />
-                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Country">[CurrentRow("Country").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Total Cases">[CurrentRow("Total Cases").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="New Cases">[CurrentRow("New Cases").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Total Recovered">[CurrentRow("Total Recovered").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="New Recovered">[CurrentRow("New Recovered").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="Population">[CurrentRow("Population").ToString]</InArgument>
                         </ui:AddQueueItem.ItemInformation>
                       </ui:AddQueueItem>
                     </Sequence>
